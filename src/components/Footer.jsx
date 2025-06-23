@@ -8,8 +8,8 @@ const Footer = () => {
         <h1 className="text-2xl font-bold">Portfolio</h1>
         <div className="flex gap-7">
             <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Project</a>
+            <a href="#about">About</a>
+            <a href="#project">Project</a>
         </div>
         <div className="flex items-center gap-3">
             <a href="https://www.linkedin.com/in/ryan-wiratama/"  className="text-3xl">
