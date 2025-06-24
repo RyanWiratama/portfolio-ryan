@@ -1,4 +1,4 @@
-import HeroImage from "./assets/heroImg.png";
+import HeroImage from "./assets/heroImg.jpeg";
 import Project1 from "./assets/project1web.png"; 
 import Project2 from "./assets/project2web.png"; 
 import Project2_2 from "./assets/project2web_2.png"; 
@@ -16,6 +16,9 @@ import bootstrapLogo from './assets/bootstrapLogo.png';
 import javascriptLogo from './assets/javascriptLogo.png';
 import figmaLogo from './assets/figmaLogo.png';
 import gitLogo from './assets/gitLogo.png';
+import { FaLinkedin } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { useState } from "react"; 
 import { ArrowUpRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -61,9 +64,10 @@ function App() {
           </p>
           <div className="flex gap-4">
             <a
-              href="/Ryan_Wiratama_Resume.pdf"
-              download
-              className="group inline-flex items-center gap-2 bg-green-500 text-gray-800 px-5 py-2 font-semibold shadow transition duration-300 hover:bg-neutral-50"
+              href="https://drive.google.com/file/d/1nFoCffGLkISZz_vwrwrKVkCXT2yJ7GPm/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex rounded-lg items-center gap-2 bg-green-500 text-gray-800 px-5 py-2 font-semibold shadow transition duration-300 hover:bg-neutral-50"
             >
               Download Resume
               <ArrowUpRight
@@ -72,7 +76,7 @@ function App() {
             </a>
             <a
               href="#contact"
-              className="border border-neutral-50 text-neutral-50 px-5 py-2  font-semibold shadow hover:bg-neutral-50 hover:text-gray-800 transition duration-300"
+              className="border border-neutral-50 text-neutral-50 px-5 py-2 rounded-lg font-semibold shadow hover:bg-neutral-50 hover:text-gray-800 transition duration-300"
             >
               Get in Touch
             </a>
@@ -83,7 +87,7 @@ function App() {
           <img
             src={HeroImage}
             alt="Hero"
-            className="w-[300px] md:w-[450px] rounded-xl shadow-lg"
+            className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full object-cover"
           />
         </div>
       </div>
@@ -111,6 +115,7 @@ function App() {
             title: "COMICOS 2026 X APPREN",
             desc: `A website built using Elementor for The Conference on Media, Communications, and Sociology (COMICOS), an annual academic forum organized by the Faculty of Social and Political Sciences at Universitas Atma Jaya Yogyakarta (FISIP UAJY). It serves as a dynamic platform that brings together academics, practitioners, and policymakers to discuss contemporary issues in the social sciences. Fully responsive across all devices.`,
             techs: ["WordPress", "Elementor"],
+            link: "https://comicos.uajy.ac.id",
           },
           {
             img: Project2,
@@ -118,12 +123,18 @@ function App() {
             title: "RAYANDJA",
             desc: `RAYANDJA is a web-based e-commerce and educational platform focused on secondhand goods, developed using React Vite. Created for the 2025 Web Development Competition, the platform not only facilitates buying and selling used items but also raises awareness about sustainable consumption through informative content and user engagement features.`,
             techs: ["React Vite", "Tailwind", "Figma"],
+            github: "https://github.com/RyanWiratama/IFest-13_WDC_RayandjaTeam_UAJY",
           },
           {
             img: Project3,
             title: "ReUseMart",
             desc: `ReUseMart is a secondhand e-commerce platform developed as part of a Software Development Project course. Built using React Vite, React Native, and Laravel, the platform is fully integrated with a RESTful API to support both web and mobile access. It enables users to conveniently buy and sell used goods through a seamless, responsive, and user-friendly interface.`,
             techs: ["React Vite", "React Native", "Laravel", "MySQL"],
+            github: [
+              { label: "Frontend Web", url: "https://github.com/RyanWiratama/frontendWebP3L" },
+              { label: "Frontend Mobile", url: "https://github.com/RyanWiratama/frontendMobileP3L" },
+              { label: "Backend", url: "https://github.com/RyanWiratama/backendP3L" },
+            ]
           },
         ].map((project, index) => (
             <div
@@ -167,6 +178,42 @@ function App() {
                     </span>
                   ))}
                 </div>
+                {(project.github || project.link) && (
+                  <div className="flex gap-4 mt-4 flex-wrap">
+                    {Array.isArray(project.github)
+                      ? project.github.map((repo, i) => (
+                          <a
+                            key={i}
+                            href={repo.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-green-400 hover:underline"
+                          >
+                            {repo.label} →
+                          </a>
+                        ))
+                      : typeof project.github === "string" && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-green-400 hover:underline"
+                          >
+                            GitHub →
+                          </a>
+                        )}
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-green-400 hover:underline"
+                      >
+                        Live Site →
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -226,7 +273,7 @@ function App() {
       </div>
 
       {/* Contact Section */}
-      <div id="contact" className="max-w-6xl mx-auto px-6 pt-24 pb-24">
+      <div id="contact" className="max-w-6xl mx-auto px-6 pt-24">
         <h2 className="text-4xl font-bold text-center text-white mb-6">Contact</h2>
         <p className="text-center text-gray-300 mb-12">
           If you have any questions or would like to work together, feel free to reach out!
@@ -246,6 +293,20 @@ function App() {
             <div>
               <h3 className="text-xl font-semibold mb-2">Location</h3>
               <p className="text-gray-300">Yogyakarta, Indonesia</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Social Media</h3>
+              <div className="flex items-center gap-4 text-2xl mt-2">
+                <a href="https://www.linkedin.com/in/ryan-wiratama/" target="_blank" rel="noopener noreferrer" className="hover:text-green-400">
+                  <FaLinkedin />
+                </a>
+                <a href="https://github.com/RyanWiratama" target="_blank" rel="noopener noreferrer" className="hover:text-green-400">
+                  <FaGithub />
+                </a>
+                <a href="https://www.instagram.com/wrtmryn/" target="_blank" rel="noopener noreferrer" className="hover:text-green-400">
+                  <FaInstagram />
+                </a>
+              </div>
             </div>
           </div>
 
